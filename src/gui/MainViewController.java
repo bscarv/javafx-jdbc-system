@@ -36,8 +36,16 @@ public class MainViewController implements Initializable{
 	public void onMenuItemDepartmentAction() {
 		loadView("/gui/DepartmentList.fxml", (DepartmentListController controller) -> {
 			controller.setDepartmentService(new DepartmentService());
-			controller.updateTableView();
+			controller.updateTableView();		
 		});
+		
+		//Alternativa a inicializar ação como parâmetro (Sem Consumer)
+//		String absoluteName = "/gui/DepartmentList.fxml";
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+//		loadView2(loader);		
+//		DepartmentListController controller = loader.getController();
+//		controller.setDepartmentService(new DepartmentService());
+//		controller.updateTableView();
 	}
 	
 	@FXML
@@ -71,4 +79,22 @@ public class MainViewController implements Initializable{
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}
 	}
+
+	//Alternativa a inicializar ação como parâmetro (Sem Consumer)
+//	private synchronized void loadView2(FXMLLoader loader) {		
+//		try {
+//			VBox newVBox = loader.load();
+//			
+//			Scene mainScene = Main.getMainScene();
+//			VBox mainVBox = (VBox)((ScrollPane)mainScene.getRoot()).getContent();
+//			
+//			Node mainMenu = mainVBox.getChildren().get(0);
+//			mainVBox.getChildren().clear();
+//			mainVBox.getChildren().add(mainMenu);
+//			mainVBox.getChildren().addAll(newVBox.getChildren());			
+//			
+//		} catch (IOException e) {
+//			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
+//		}
+//	}
 }
